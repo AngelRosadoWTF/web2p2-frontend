@@ -4,13 +4,37 @@ import api from '../services/api'
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const handleLogin = async () => {
+  const handleLoginCookie = async () => {
     try {
       const formData = new URLSearchParams()
       formData.append('username', username)
       formData.append('password', password)
       const response = await api.post(
-        '/login',
+        '/login/cookie',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        }
+      )
+
+      alert(
+        `Usuario autenticado\n\nToken:\n${response.data.access_token}`
+      )
+
+    } catch (error) {
+      alert('Error de autenticación')
+    }
+  }
+
+  const handleLoginHeader = async () => {
+    try {
+      const formData = new URLSearchParams()
+      formData.append('username', username)
+      formData.append('password', password)
+      const response = await api.post(
+        '/login/header',
         formData,
         {
           headers: {
@@ -46,8 +70,12 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button onClick={handleLogin}>
-        Entrar
+      <button onClick={handleLoginCookie}>
+        Entrar Cookie
+      </button>
+
+      <button onClick={handleLoginHeader}>
+        Entrar Header
       </button>
     </div>
   )
