@@ -5,8 +5,7 @@ import Usuario from './components/Usuario'
 function App() {
   return (
     <div className="container">
-      <h1>Autenticación Completa</h1>
-      <p>Por: Ángel Rosado y Anderson Guillermo</p>
+      <h1>Autenticación completa</h1>
       <div className="forms">
         <Login />
         <Registro />
