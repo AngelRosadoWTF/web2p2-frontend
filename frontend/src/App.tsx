@@ -9,7 +9,6 @@ function App() {
       <div className="forms">
         <Login />
         <Registro />
-        <Usuario />
       </div>
     </div>
   )
